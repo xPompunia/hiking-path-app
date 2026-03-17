@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Morskie Oko",
+    "description": "Największe jezioro w Tatrach, położone w Dolinie Rybiego Potoku. Otoczone majestatycznymi szczytami, stanowi jeden z najbardziej rozpoznawalnych punktów w polskich górach.",
+    "imageUrl": "https://images.unsplash.com/photo-1603495316553-75f4409ba2a0?q=80&w=986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 2,
+    "name": "Dolina Pięciu Stawów",
+    "description": "Jedna z najpiękniejszych dolin w Tatrach Wysokich. Znajduje się tu kilka lodowcowych jezior oraz schronisko górskie położone na najwyższej wysokości w Polsce.",
+    "imageUrl": "https://images.unsplash.com/photo-1623927478384-67014528b6ac?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 3,
+    "name": "Kasprowy Wierch",
+    "description": "Popularny szczyt w Tatrach Zachodnich, na który można wjechać kolejką linową. Oferuje wspaniałe panoramy na Tatry Wysokie i Czerwone Wierchy.",
+    "imageUrl": "https://images.unsplash.com/photo-1616444107943-05a104fa5b55?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 4,
+    "name": "Giewont",
+    "description": "Symbol Zakopanego, szczyt z charakterystycznym krzyżem na wierzchołku, przypominający sylwetkę śpiącego rycerza. Obowiązkowy punkt dla wielu turystów.",
+    "imageUrl": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 5,
+    "name": "Szlaki w Bieszczadach",
+    "description": "Połoniny Caryńska i Wetlińska to wizytówka Bieszczad. Szerokie panoramy i falujące trawy tworzą niepowtarzalny klimat tych gór.",
+    "imageUrl": "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 6,
+    "name": "Trzy Korony",
+    "description": "Najwyższy szczyt Pienin Środkowych z platformą widokową, z której rozpościera się widok na przełom Dunajca i Tatry.",
+    "imageUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 7,
+    "name": "Dolina Kościeliska",
+    "description": "Jedna z najpiękniejszych dolin w Tatrach, bogata w formy krasowe, jaskinie i malownicze polany. Idealna na spokojny spacer.",
+    "imageUrl": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 8,
+    "name": "Szczeliniec Wielki",
+    "description": "Najwyższy szczyt Gór Stołowych, będący piaskowcowym płaskowyżem z labiryntem skalnym i fantastycznymi formami skalnymi.",
+    "imageUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 9,
+    "name": "Śnieżka",
+    "description": "Najwyższy szczyt Karkonoszy i Sudetów z charakterystycznym budynkiem obserwatorium meteorologicznego w kształcie 'spodków'.",
+    "imageUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    "id": 10,
+    "name": "Babia Góra",
+    "description": "Najwyższy szczyt Beskidów Zachodnich, zwany Królową Beskidów. Znana z kapryśnej pogody i przepięknych wschodów słońca.",
+    "imageUrl": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000&auto=format&fit=crop"
+  }
+]
