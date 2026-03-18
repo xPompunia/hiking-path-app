@@ -1,10 +1,11 @@
 package com.example.szlaki
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,26 +22,26 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import com.example.szlaki.model.Path
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.szlaki.ui.screens.PathDetail
 import com.example.szlaki.ui.screens.PathList
 import com.example.szlaki.ui.theme.CustomFont
 import com.example.szlaki.ui.theme.PathTheme
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.szlaki.viewmodel.PathViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,31 +57,28 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PathApp() {
-    val context = LocalContext.current
-    var paths by remember { mutableStateOf<List<Path>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
-    var chosenPath by remember { mutableStateOf<Path?>(null) }
+fun PathApp(viewModel: PathViewModel = viewModel()) {
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-    LaunchedEffect(Unit) {
-        paths = loadPathsFromAssets(context)
-        isLoading = false
-    }
+    val pathId = navBackStackEntry?.arguments?.getInt("pathId")
+    val chosenPath = pathId?.let { viewModel.getPathById(it) }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { 
                     Text(
-                        text = chosenPath?.name ?: "Moje Szlaki",
+                        text = if (currentRoute?.startsWith("detail") == true) chosenPath?.name ?: "" else "Szlaczki",
                         fontFamily = CustomFont,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.headlineMedium
                     ) 
                 },
                 navigationIcon = {
-                    if (chosenPath != null) {
-                        IconButton(onClick = { chosenPath = null }) {
+                    if (navController.previousBackStackEntry != null) {
+                        IconButton(onClick = { navController.navigateUp() }) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Powrót"
@@ -102,25 +100,62 @@ fun PathApp() {
                 contentScale = ContentScale.Crop
             )
 
-            if (isLoading) {
+            if (viewModel.isLoading) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
-            } else if (chosenPath == null) {
-                PathList(paths = paths, onPathClick = { path -> chosenPath = path })
             } else {
-                PathDetail(path = chosenPath!!, onBack = { chosenPath = null })
+                NavHost(
+                    navController = navController,
+                    startDestination = "list",
+                    enterTransition = {
+                        slideIntoContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                            animationSpec = tween(400)
+                        )
+                    },
+                    exitTransition = {
+                        slideOutOfContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                            animationSpec = tween(400)
+                        )
+                    },
+                    popEnterTransition = {
+                        slideIntoContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                            animationSpec = tween(400)
+                        )
+                    },
+                    popExitTransition = {
+                        slideOutOfContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                            animationSpec = tween(400)
+                        )
+                    }
+                ) {
+                    composable("list") {
+                        PathList(
+                            paths = viewModel.paths,
+                            onPathClick = { path ->
+                                navController.navigate("detail/${path.id}")
+                            }
+                        )
+                    }
+                    composable(
+                        route = "detail/{pathId}",
+                        arguments = listOf(navArgument("pathId") { type = NavType.IntType })
+                    ) { backStackEntry ->
+                        val id = backStackEntry.arguments?.getInt("pathId")
+                        val path = id?.let { viewModel.getPathById(it) }
+                        if (path != null) {
+                            PathDetail(
+                                path = path,
+                                onBack = { navController.navigateUp() }
+                            )
+                        }
+                    }
+                }
             }
         }
-    }
-}
-
-fun loadPathsFromAssets(context: Context): List<Path> {
-    return try {
-        val jsonString = context.assets.open("szlaki.json").bufferedReader().use { it.readText() }
-        val listType = object : TypeToken<List<Path>>() {}.type
-        Gson().fromJson(jsonString, listType)
-    } catch (e: Exception) {
-        emptyList()
     }
 }

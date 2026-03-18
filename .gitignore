@@ -1,34 +1,51 @@
-# Android Studio / IntelliJ
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-*.bak
-
-# Gradle
-.gradle/
+# Built artifacts
+bin/
+gen/
+out/
 build/
+.gradle/
 
-# Android
-/app/build/
-/app/release/
+# Android Studio / IntelliJ IDEA
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+.idea/navEditor.xml
+.idea/modules.xml
+*.iml
+*.iws
+*.ipr
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Local configuration files
+local.properties
+.bundle/
 
 # Log files
 *.log
+captures/
 
 # Keystore files
 *.jks
 *.keystore
+*.p12
 
-# Local configuration
-local.properties
+# External native build
+.externalNativeBuild/
+.cxx/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Project specific
+/app/build/
+/app/release/
+*.bak
