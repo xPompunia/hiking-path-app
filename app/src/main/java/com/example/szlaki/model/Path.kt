@@ -25,7 +25,7 @@ class Path(
     @get:Ignore
     var isTimerRunning by mutableStateOf(savedIsTimerRunning)
 
-    // Synchronizacja stanu UI z bazą
+    // Syncs UI state back to the persisted fields
     fun syncToPersisted() {
         savedTimeMillis = timeMillis
         savedIsTimerRunning = isTimerRunning

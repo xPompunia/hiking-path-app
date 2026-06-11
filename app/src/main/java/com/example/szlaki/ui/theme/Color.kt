@@ -2,12 +2,12 @@ package com.example.szlaki.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Główna zieleń logo i marki
+// Primary logo/brand green
 val PathGreenPrimary = Color(0xFF2E7D32)
 val PathGreenDark = Color(0xFF1B5E20)
 val PathGreenLight = Color(0xFF4CAF50)
 
-// Kolory akcentowe i pomocnicze
+// Accent and supporting colors
 val PathSienna = Color(0xFFA0522D)
 val PathBeige = Color(0xFFF5F5DC)
 

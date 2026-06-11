@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface NpsApiService {
     @GET("parks")
     suspend fun getParks(
-        @Query("stateCode") stateCode: String = "WY,CA,UT,WA", // Yellowstone, Yosemite, Zion, Rainier itp.
+        @Query("stateCode") stateCode: String = "WY,CA,UT,WA", // Yellowstone, Yosemite, Zion, Rainier, etc.
         @Query("limit") limit: Int = 20,
         @Query("q") query: String = "hiking",
         @Query("api_key") apiKey: String = BuildConfig.NPS_API_KEY

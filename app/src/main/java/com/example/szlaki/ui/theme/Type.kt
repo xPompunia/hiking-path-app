@@ -6,12 +6,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Korzystamy z systemowych czcionek, ale o różnych wagach dla lepszej hierarchii
+// System fonts, with varied weights for a clearer hierarchy
 val HeadlineFont = FontFamily.Serif
 val BodyFont = FontFamily.SansSerif
 
 val Typography = Typography(
-    // Nagłówki na ekranie detali i liście
+    // Headings on the detail screen and the list
     headlineLarge = TextStyle(
         fontFamily = HeadlineFont,
         fontWeight = FontWeight.ExtraBold,
@@ -19,14 +19,14 @@ val Typography = Typography(
         lineHeight = 36.sp,
         letterSpacing = (-0.5).sp
     ),
-    // Tytuł na TopAppBar
+    // TopAppBar title
     headlineMedium = TextStyle(
         fontFamily = HeadlineFont,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         lineHeight = 32.sp
     ),
-    // Tytuły na kartach listy
+    // Titles on list cards
     titleLarge = TextStyle(
         fontFamily = BodyFont,
         fontWeight = FontWeight.Bold,
@@ -34,7 +34,7 @@ val Typography = Typography(
         lineHeight = 26.sp,
         letterSpacing = 0.sp
     ),
-    // Główny tekst opisu
+    // Main description text
     bodyLarge = TextStyle(
         fontFamily = BodyFont,
         fontWeight = FontWeight.Normal,
@@ -42,7 +42,7 @@ val Typography = Typography(
         lineHeight = 26.sp,
         letterSpacing = 0.5.sp
     ),
-    // Tekst pomocniczy (np. stany, designacja)
+    // Secondary text (e.g. states, designation)
     bodyMedium = TextStyle(
         fontFamily = BodyFont,
         fontWeight = FontWeight.Medium,
@@ -50,7 +50,7 @@ val Typography = Typography(
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
     ),
-    // Przycisk
+    // Buttons
     labelLarge = TextStyle(
         fontFamily = BodyFont,
         fontWeight = FontWeight.Bold,

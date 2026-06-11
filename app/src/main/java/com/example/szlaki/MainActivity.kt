@@ -89,7 +89,7 @@ fun PathApp(
     val pathId = navBackStackEntry?.arguments?.getInt("pathId")
     val chosenPath = pathId?.let { viewModel.getPathById(it) }
 
-    // Ekran ładowania
+    // Loading screen
     if (viewModel.isLoading) {
         Box(
             modifier = Modifier
@@ -219,7 +219,7 @@ fun PathApp(
             }
         }
 
-        // Pływający timer
+        // Floating timer
         if (viewModel.isAnyTimerRunning) {
             Surface(
                 modifier = Modifier
