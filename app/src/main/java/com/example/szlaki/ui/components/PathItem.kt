@@ -14,31 +14,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.szlaki.model.Path
-import com.example.szlaki.ui.theme.CustomFont
 
 @Composable
-fun PathItem(path: Path, onClick: () -> Unit) {
+fun PathItem(
+    path: Path,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
-            .border(1.dp, Color.Gray.copy(alpha = 0.3f), RoundedCornerShape(12.dp))
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .border(
+                width = 1.dp, 
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f), 
+                shape = RoundedCornerShape(16.dp)
+            )
             .clickable { onClick() }
-            .padding(8.dp),
+            .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = path.imageUrl,
             contentDescription = path.name,
             modifier = Modifier
-                .size(80.dp)
-                .padding(4.dp),
+                .size(70.dp)
+                .clip(RoundedCornerShape(12.dp)),
             contentScale = ContentScale.Crop
         )
 
@@ -46,9 +54,9 @@ fun PathItem(path: Path, onClick: () -> Unit) {
 
         Text(
             text = path.name,
-            fontFamily = CustomFont,
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
